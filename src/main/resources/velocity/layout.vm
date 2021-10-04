@@ -1,0 +1,124 @@
+#macro(mainLayout)
+<!doctype html>
+    <meta charset="utf-8">
+<html>
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+    <style>
+        html{
+            background-color: #383d45;
+            color: #edae4e;
+        }
+        header{
+            position:absolute;
+            top:0;
+            width:100%;
+            background-color: rgba(42,46,52,0.5);
+            z-index:50;
+        }
+        nav{
+            color: #edae4e;
+        }
+        .nav-user{
+            display:block;
+            padding:.5rem 1rem;
+            margin:0;
+        }
+        .list-group-horizontal{
+            margin-left:.5rem !important;
+        }
+        .list-group-item{
+            padding:.75rem 1.25rem .75rem 0;
+        }
+        .alert{
+            position: fixed;
+            top:10px;
+            width:90%;
+            margin:20px 5%;
+        }
+        #reviewComment, #reviewRating{
+            color:white;
+        }
+        .user-list{
+            min-height:25px;
+        }
+        .user-list li{
+            padding:0 .25rem;
+        }
+    </style>
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/" style="color: #edae4e;">IMDB</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+
+                #if($currentUser)
+                    <p class="nav-user">Welcome, $currentUser</p>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" style="color: #edae4e;">Home</a>
+                    </li>
+                    #if($currentUserType == "admin" || $currentUserType == "pco")
+                        <li class="nav-item">
+                            <a class="nav-link" href="/create-show" style="color: #edae4e;">Create Show</a>
+                        </li>
+                    #end
+                    #if($currentUserType == "admin")
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/approve-show" style="color: #edae4e;">Approve Shows</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/register-user" style="color: #edae4e;">Register User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/approve-user" style="color: #edae4e;">Approve Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/approve-review" style="color: #edae4e;">Approve Reviews</a>
+                        </li>
+                    #end
+                    <!-- if session is set, show Logout button -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout" style="color: #edae4e;">Logout</a>
+                    </li>
+                    <!-- end -->
+                #else
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" style="color: #edae4e;">Home</a>
+                    </li>
+                    <!-- if session is not set, show these nav-items -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register" style="color: #edae4e;">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"href="/login" style="color: #edae4e;">Login</a>
+                    </li>
+                    <!-- end -->
+                #end
+            </ul>
+        </div>
+    </nav>
+</header>
+<body style="background-color: #383d45; color: white;">
+<main role="main">
+    $bodyContent
+</main>
+</body>
+
+<!-- Can't get footer to stick -->
+<footer>
+    <nav class="footer navbar-fixed-bottom">
+        <div class="container">
+            <!--<p>footer</p>-->
+        </div>
+    </nav>
+</footer>
+#end

@@ -1,0 +1,29 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()<link rel="preconnect" href="https://fonts.gstatic.com">
+    <div class="contain" style="height:350px;position:relative;background-image: url($show.image); background-size:cover; background-position-y: 30%;" >
+        <div class="feature-gradient-overlay" style="z-index:0;position:absolute;height:100%;width:100%;background: linear-gradient(180deg, rgba(56,61,69,0) 12%, rgba(56,61,69,0.613865614605217) 53%, rgba(56,61,69,1) 100%);"></div>
+        <h1 class="text-center" style="position:relative; z-index:1; padding:100px 0 0; font-family: 'Rubik', sans-serif; font-size:4rem;">IMDB</h1>
+        <h5 class="text-center text-muted" style="position:relative; z-index:1">Your #1 movie info destination</h5>
+    </div>
+    <h3 class="ml-4">Featured Show</h3>
+    <div class="contain mt-1 ml-4">
+        <div class="show w-50 border">
+            <div class="row">
+                <div class="col-2">
+                    <img class="img-fluid" src="$show.image">
+                </div>
+                <div class="col-9">
+                    <p class="lead mt-2 ml-2 mb-1" style="font-size: 25px; color: white;"><a href="shows/$show.ID">$show.title ($show.rating ⭐)</a></p>
+                    <p class="mt-2 ml-2">$show.description</p>
+                    <ul class="list-group list-group-horizontal" style="color: white;">
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Release Date: $show.releaseDate</li>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Runtime: $show.runTime minutes</li>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Genre: $show.genre</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h3 class="ml-4"><a href="/shows">View All Shows</a></h3>
+#end

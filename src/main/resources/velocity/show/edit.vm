@@ -1,0 +1,62 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<div class="contain" style="height:350px;position:relative;background-image: url($show.image); background-size:cover; background-position-y: 30%;" >
+    <div class="feature-gradient-overlay" style="z-index:0;position:absolute;height:100%;width:100%;background: linear-gradient(180deg, rgba(56,61,69,0) 12%, rgba(56,61,69,0.613865614605217) 53%, rgba(56,61,69,1) 100%);"></div>
+    <h1 class="text-center" style="position:relative; z-index:1; padding:100px 0 0; font-family: 'Rubik', sans-serif; font-size:4rem;">IMDB</h1>
+    <h5 class="text-center text-muted" style="position:relative; z-index:1">Your #1 movie info destination</h5>
+</div>
+<form action="#" id="form"  method="post" class="w-75">
+    <div class="form-group row">
+        <label for="title" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="title" name="title" required="required" value="$show.title" style="width: 250px;">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="description" class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="description" name="description" required="required" value="$show.description" style="width: 250px;">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="runtime" class="col-sm-2 col-form-label">Episode Runtime</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="runtime" name="runtime" required="required" value="$show.runTime" style="width: 250px;">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="releasedate" class="col-sm-2 col-form-label">Release Date</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="releasedate" name="releasedate" required="required" value="$show.releaseDate" style="width: 250px;">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="language" class="col-sm-2 col-form-label">Language</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="language" name="language" required="required" value="$show.language" style="width: 250px;">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="country" class="col-sm-2 col-form-label">Country</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="country" name="country" required="required" value="$show.country" style="width: 250px;">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="genre" class="col-sm-2 col-form-label">Genre</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="genre" name="genre" required="required" value="$show.genre" style="width: 250px;">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="image" class="col-sm-2 col-form-label">Image (URL link)</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="image" name="image" required="required" value="$show.image" style="width: 250px;">
+        </div>
+    </div>
+    <div class="form-group">
+        <button id="submit" type="submit" class="btn btn-primary btn-block" style="background-color: #edae4e; width: 100px;">Submit</button>
+    </div>
+</form>
+
+#end

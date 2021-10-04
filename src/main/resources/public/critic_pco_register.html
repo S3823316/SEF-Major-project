@@ -1,0 +1,132 @@
+<!doctype html>
+<html style="background-color: #383d45; color: #edae4e;">
+
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #383d45; color: #edae4e;">
+        <a class="navbar-brand" href="#" style="color: #edae4e;">IMDB</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: #edae4e;">Home</span></a>
+            </li>
+            <!-- if session is set, show Logout button -->
+            <li class="nav-item">
+                <a class="nav-link"href="#" style="color: #edae4e;">Logout</a>
+            </li>
+            <!-- end -->
+            <!-- if session is not set, show these nav-items -->
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: #edae4e;">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"href="#" style="color: #edae4e;">Login</a>
+            </li>
+            <!-- end -->
+          </ul>
+        </div>
+      </nav>
+</header>
+<!-- code inspired by https://getbootstrap.com/docs/4.3/components/forms/ -->
+<body style="background-color: #383d45; color: white;">
+    <main role="main">
+      <div class="contain">
+        <form action="?" method="post" class="w-75">
+          <h2>Production Company and Critic Registration</h2>   
+          <div class="form-group row">
+            <label for="fname" class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="fname" name="fname" required="required"  style="width: 250px;">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="lname" class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="lname" name="lname" required="required" style="width: 250px;">
+            </div>
+          </div>
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-2 pt-0 pb-0">Gender</legend>
+              <div class="col-sm-10">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="maleRadio" id="maleRadio" value="maleRadio" checked>
+                  <label class="form-check-label" for="maleRadio">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="femaleRadio" id="femaleRadio" value="femaleRadio">
+                  <label class="form-check-label" for="femaleRadio">
+                    Female
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <div class="form group row">
+            <hr>
+          </div>
+          <div class="form-group row">
+            <label for="country" class="col-sm-2 col-form-label">Country</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="country" name="country" required="required" style="width: 250px;">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="email" name="email" required="required" style="width: 250px;">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="orgName" class="col-sm-2 col-form-label">Org Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="orgName" name="orgName" required="required" style="width: 250px;">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="phone" name="phone" required="required" style="width: 250px;">
+            </div>
+          </div>
+          <div class="form group row">
+            <hr>
+          </div>
+          <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password" name="password" required="required" style="width: 250px;">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="confirmpassword" class="col-sm-2 col-form-label">Confirm Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" required="required" style="width: 250px;">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary btn-block" style="background-color: #edae4e; width: 100px;">Register</button>
+            </div>
+          </div>
+        </form>
+    </div>
+    </main>
+</body>
+<!-- Can't get footer to stick -->
+<footer style="background-color: #383d45;">
+    <nav class="footer navbar-fixed-bottom" style="background: #E8FFFF;">
+        <div class="container">
+            
+        </div>
+    </nav>
+</footer>

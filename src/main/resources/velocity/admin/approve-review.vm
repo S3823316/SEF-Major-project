@@ -1,0 +1,80 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<br><br><br>
+<h3>Unapproved Reviews</h3>
+    #foreach($reviews in $unapprovedreviews)
+    <div class="contain mt-1 ml-4">
+        <div class="show w-50 border">
+            <div class="row">
+                <div class="col-9">
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <p class="mb-1">Show:$reviews.title User:$reviews.firstname $reviews.lastname  Date:$reviews.date</p>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                        <br/>
+                    </ul>
+
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <p class="mb-1"></p>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 15px;">
+                            Rating:$reviews.rating⭐</li>
+                    </ul>
+
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 18px;">
+                            Review: $reviews.review</li>
+                    </ul>
+
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                            <a href="/admin/approve-review/$reviews.reviewid">Approve review</a>
+                        </li>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                            <a href="/admin/delete-review/$reviews.reviewid">Delete review</a>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    #end
+<h3>Approved Reviews</h3>
+    #foreach($reviews in $approvedreviews)
+    <div class="contain mt-1 ml-4">
+        <div class="show w-50 border">
+            <div class="row">
+                <div class="col-9">
+##                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+##                        <p class="mb-1">Show:$reviews.title User:$reviews.firstname $reviews.lastname Date:$reviews.date</p>
+##
+##                    </ul>
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <p class="mb-1">Show:$reviews.title User:$reviews.firstname $reviews.lastname  Date:$reviews.date</p>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                            <br/>
+                    </ul>
+
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <p class="mb-1"></p>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 15px;">
+                            Rating:$reviews.rating⭐</li>
+                    </ul>
+
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 18px;">
+                            Review: $reviews.review</li>
+                    </ul>
+
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                            <a href="/admin/disable-review/$reviews.reviewid">Disable review</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    #end
+#end

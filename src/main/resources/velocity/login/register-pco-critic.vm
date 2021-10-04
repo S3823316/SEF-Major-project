@@ -1,0 +1,173 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<script>
+    window.onload = function () {
+        document.getElementById("form").onsubmit = function (){
+            return checkPassword();
+        }
+        document.getElementById("password").onblur = checkPassword;
+        changeAccountType();
+    }
+
+    function checkPassword(){
+        var value = document.getElementById("password").value;
+        var reg_password = /^\w{6,12}$/;
+        var flag = reg_password.test(value);
+        var s_username = document.getElementById(`s_password`);
+        if (!flag){
+            s_username.innerHTML = "password must be between 6-12 characters";
+        }else {
+            s_username.innerHTML = null;
+        }
+    }
+
+    function changeAccountType(){
+        var accountType = document.querySelector('input[name="accountType"]:checked').value;
+        console.log(accountType);
+        if(accountType == "pco"){
+            document.getElementById("pcoid").removeAttribute("disabled");
+            document.getElementById("pcoid").value = 1;
+        }
+        else{
+            document.getElementById("pcoid").setAttribute("disabled", "true");
+            document.getElementById("pcoid").value = null;
+        }
+    }
+</script>
+<div class="contain" style="height:350px;position:relative;background-image: url($show.image); background-size:cover; background-position-y: 30%;" >
+    <div class="feature-gradient-overlay" style="z-index:0;position:absolute;height:100%;width:100%;background: linear-gradient(180deg, rgba(56,61,69,0) 12%, rgba(56,61,69,0.613865614605217) 53%, rgba(56,61,69,1) 100%);"></div>
+    <h1 class="text-center" style="position:relative; z-index:1; padding:100px 0 0; font-family: 'Rubik', sans-serif; font-size:4rem;">IMDB</h1>
+    <h5 class="text-center text-muted" style="position:relative; z-index:1">Your #1 movie info destination</h5>
+</div>
+<div class="contain">
+    <form action="#"  id="form" method="post" class="w-75">
+        <h2>Production Company and Critic Registration</h2>
+        <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="username" name="username" required="required"  style="width: 250px;">
+
+            </div>
+            <p style="color: red; font-size: larger" >#if($duplicatedUsername == true)
+                !!That username is taken.Try another.
+            #end
+            <p>
+        </div>
+        <div class="form-group row">
+            <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="firstname" name="firstname" required="required"  style="width: 250px;">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lastname" class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="lastname" name="lastname" required="required" style="width: 250px;">
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0 pb-0">Gender</legend>
+                <div class="col-sm-10">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="gender" value="male" checked>
+                        <label class="form-check-label" for="gender">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="gender" value="female">
+                        <label class="form-check-label" for="gender">
+                            Female
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0 pb-0">Account Type</legend>
+                <div class="col-sm-10">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="accountType" id="accountType" value="pco" onchange="changeAccountType()" checked>
+                        <label class="form-check-label" for="accountType">
+                            PCo
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="accountType" id="accountType" value="critic" onchange="changeAccountType()">
+                        <label class="form-check-label" for="accountType">
+                            critic
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0 pb-0">Production Company</legend>
+                <div class="col-sm-10">
+                    <div class="form-check form-check-inline">
+                        <select class="form-check-input" type="radio" name="pcoid" id="pcoid">
+                            #foreach($production_company in $production_companies)
+                            <option value="$production_company.pcoid">$production_company.pconame</option>
+                            #end
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <label for="country" class="col-sm-2 col-form-label">Country</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="country" name="country" required="required" style="width: 250px;">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" name="email" required="required" style="width: 250px;">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="orgName" class="col-sm-2 col-form-label">Organisation Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="organisation" name="organisation" required="required" style="width: 250px;">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="phone" name="phone" required="required" style="width: 250px;">
+            </div>
+        </div>
+        <div class="form group row">
+            <hr>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" name="password" required="required" style="width: 250px;">
+                <span id="s_password" style="color: red"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="confirmpassword" class="col-sm-2 col-form-label">Confirm Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" required="required" style="width: 250px;">
+                <p style="color: red; font-size: larger" >
+                    #if($differentPassword == true)
+                        !!Passwords didn't match
+                    #end
+                <p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary btn-block" style="background-color: #edae4e; width: 100px;">Register</button>
+            </div>
+        </div>
+    </form>
+</div>
+#end

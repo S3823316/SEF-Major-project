@@ -1,0 +1,29 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<div class="feature-image-underlay" style="float:left; width:100%; height:350px; z-index:-1; background-image: url($featuredShow.image); background-size:cover; background-position-y: 30%;">
+    <div class="feature-gradient-overlay" style="height:100%;width:100%;background: linear-gradient(180deg, rgba(56,61,69,0) 12%, rgba(56,61,69,0.613865614605217) 53%, rgba(56,61,69,1) 100%);"></div>
+</div>
+<h3>All TV Show</h3>
+    #foreach($show in $shows)
+        #if($show.approved)
+            <div class="contain mt-1 ml-4">
+                <div class="show w-50 border">
+                    <div class="row">
+                        <div class="col-2">
+                            <img class="img-fluid" src="$show.image">
+                        </div>
+                        <div class="col-9">
+                            <p class="lead mt-2 ml-2 mb-1" style="font-size: 25px; color: white;"><a href="shows/$show.ID">Title: $show.title ($show.rating ⭐)</a></p>
+                            <p class="mt-2 ml-2">Description: $show.description</p>
+                            <ul class="list-group list-group-horizontal" style="color: white;">
+                                <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Release Date: $show.releaseDate</li>
+                                <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Runtime: $show.runTime minutes</li>
+                                <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Genre: $show.genre</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        #end
+    #end
+#end

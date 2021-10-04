@@ -1,0 +1,72 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<br><br><br>
+<h3>Unapproved Users</h3>
+    #foreach($account in $unapprovedaccounts)
+    <div class="contain mt-1 ml-4">
+        <div class="show w-50 border">
+            <div class="row">
+                <div class="col-9">
+                    <p class="lead mt-2 ml-2 mb-1" style="font-size: 25px; color: white;">
+                        #if($account.accountType.equals("admin"))
+                            🔒
+                        #elseif($account.accountType.equals("critic"))
+                            🤓
+                        #elseif($account.accountType.equals("pco"))
+                            📽️
+                        #elseif($account.accountType.equals("user"))
+                            👤
+                        #end
+                        $account.accountType - $account.username</p>
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Name: $account.firstName $account.lastName</li>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Email: $account.email</li>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Country: $account.country</li>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Gender: $account.gender</li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;"><a href="/admin/approve-user/$account.userID">Approve $account.accountType account</a></li>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;"><a href="/admin/delete-user/$account.userID">Delete $account.accountType account</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    #end
+<h3>Approved Users</h3>
+    #foreach($account in $approvedaccounts)
+    <div class="contain mt-1 ml-4">
+        <div class="show w-50 border">
+            <div class="row">
+                <div class="col-9">
+                    <p class="lead mt-2 ml-2 mb-1" style="font-size: 25px; color: white;">
+                        #if($account.accountType.equals("admin"))
+                            🔒
+                        #elseif($account.accountType.equals("critic"))
+                            🤓
+                        #elseif($account.accountType.equals("pco"))
+                            📽️
+                        #elseif($account.accountType.equals("user"))
+                            👤
+                        #end
+                        $account.accountType - $account.username</p>
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Name: $account.firstName $account.lastName</li>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Email: $account.email</li>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Country: $account.country</li>
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Gender: $account.gender</li>
+                    </ul>
+                    <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                        <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;"><a href="/admin/disable-user/$account.userID">Disable account</a></li>
+                        #if($account.accountType.equals("user"))
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;"><a href="/admin/upgrade-user/$account.userID">Upgrade account to admin</a></li>
+                        #elseif($account.accountType.equals("admin"))
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;"><a href="/admin/downgrade-user/$account.userID">Downgrade account to user</a></li>
+                        #end
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    #end
+#end

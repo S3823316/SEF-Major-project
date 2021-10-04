@@ -1,0 +1,65 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<br><br><br>
+<h3>Unapproved Shows</h3>
+    #foreach($show in $unapprovedshows)
+        <div class="contain mt-1 ml-4">
+            <div class="show w-50 border">
+                <div class="row">
+                    <div class="col-2">
+                        <img class="img-fluid" src="$show.image">
+                    </div>
+                    <div class="col-9">
+                        <p class="lead mt-2 ml-2 mb-1" style="font-size: 25px; color: white;"><a href="/shows/$show.ID">$show.title</a></p>
+                        <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Description: $show.description</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Runtime: $show.runTime</li>
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Release Date: $show.releaseDate</li>
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Language: $show.language</li>
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Country: $show.country</li>
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Genre: $show.genre</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                                <a href="/admin/approve-show/$show.ID">Approve show</a>
+                            </li>
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;"><a href="/admin/delete-show/$show.ID">Delete show</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    #end
+<h3>Approved Shows</h3>
+    #foreach($show in $approvedshows)
+        <div class="contain mt-1 ml-4">
+            <div class="show w-50 border">
+                <div class="row">
+                    <div class="col-2">
+                        <img class="img-fluid" src="$show.image">
+                    </div>
+                    <div class="col-9">
+                        <p class="lead mt-2 ml-2 mb-1" style="font-size: 25px; color: white;"><a href="/shows/$show.ID">$show.title</a></p>
+                        <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Description: $show.description</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Runtime: $show.runTime</li>
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Release Date: $show.releaseDate</li>
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Language: $show.language</li>
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Country: $show.country</li>
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Genre: $show.genre</li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal user-list" style="color: white;">
+                            <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                                <a href="/admin/disable-show/$show.ID">Disable show</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    #end
+#end

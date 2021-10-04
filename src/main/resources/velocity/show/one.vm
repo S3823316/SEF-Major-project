@@ -1,0 +1,98 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+    #if($show)
+        #if($show.approved)
+            <div class="feature-image-underlay" style="float:left; width:100%; height:350px; z-index:-1; background-image: url($show.image); background-size:cover; background-position-y: 30%;">
+                <div class="feature-gradient-overlay" style="height:100%;width:100%;background: linear-gradient(180deg, rgba(56,61,69,0) 12%, rgba(56,61,69,0.613865614605217) 53%, rgba(56,61,69,1) 100%);"></div>
+            </div>
+
+            <div class="ml-4">
+                <h1 class="ml-2 mb-1">Show: $show.title
+                    #if($currentUser)
+                        #if($currentUserType == "admin" || $currentUserPCo == $show.PCoID)
+                            | <a href="/edit-show/$show.ID">Edit</a>
+                            | <a href="/admin/disable-show/$show.ID">Disable</a>
+                            | <a href="/admin/delete-show/$show.ID">Delete</a>
+                        #end
+                    #end</h1>
+                <p class="ml-2 w-75 mb-1">$show.description</p>
+            </div>
+
+            <div class="ml-4">
+                <ul class="list-group list-group-horizontal ml-1">
+                    <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                        Release Date: $show.releaseDate</li>
+                    <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                        Runtime: $show.runTime</li>
+                    <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                        Genre: $show.genre</li>
+                    <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">Production
+                        Company: $productionCompany
+                    </li>
+                    <li class="list-group-item" style="background-color: #383d45; border: none; font-size: 12px;">
+                        Language: $show.language</li>
+                </ul>
+            </div>
+            <div class="contain mt-1 ml-4">
+                <!-- will need to insert rating calc. Simple SQL query SELECT AVG(column_name) FROM table_name WHERE condition; -->
+                <p class="mt-2 ml-2">Overall rating: $show.rating/5
+                    #foreach($i in [1..$show.rating])
+                        <span>⭐</span>
+                    #end</p>
+            </div>
+            #if($reviews.size() > 0)
+            <div class="divider-wrap ml-4" style="width:50%">
+                <hr class="ml-2" style="border-color:gray;">
+            </div>
+            <div class="contain mt-1 ml-4">
+                <h3 class="mt-2 ml-2 mb-1">Reviews</h3>
+                #foreach($review in $reviews)
+                    <div class="ml-2">
+                        #if($review.r_approved)
+                            <p class="mb-1">($review.rating ⭐) $review.firstname $review.lastname - $review.date</p>
+                            <p><em>$review.review</em></p>
+                        #end
+
+                        <p></p>
+                    </div>
+                #end
+            </div>
+            #end
+            <div class="divider-wrap ml-4" style="width:50%">
+                <hr class="ml-2" style="border-color:gray;">
+            </div>
+            #if($currentUser)
+
+            <div class="contain mt-1 ml-4">
+                <h3 class="mt-2 ml-2 mb-1">Review and Rate</h3>
+                <form method="post" action="#" class="mt-2 ml-2">
+                    <div class="form-group w-50">
+                        <label for="reviewComment">Review Comment:</label>
+                        <input type="textarea" class="form-control" id="reviewComment" name="reviewComment"
+                               placeholder="Comment..." style="background-color: #515660; height: 100px;">
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewRating">Rating:</label>
+                        <input type="text" class="form-control" id="reviewRating" name="reviewRating"
+                               style="background-color: #515660; width: 40px;" placeholder="/5">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submit" name="submit" style="background-color: #edae4e;">
+                        Submit
+                    </button>
+                </form>
+            </div>
+            #else
+                <p style="margin-left: 2rem !important">Please <a href="/login">login</a> to post reviews.</p>
+            #end
+            </div>
+
+
+            #else
+            <h1>$msg.get("SHOWS_SHOW_NOT_FOUND")</h1>
+
+        #end
+        #else
+        <h1>$msg.get("SHOWS_SHOW_NOT_FOUND")</h1>
+
+    #end
+#end
